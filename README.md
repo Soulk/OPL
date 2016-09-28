@@ -1,5 +1,5 @@
 # Projet OPL IAGL 2016 - 2017
-# Membres : Simon Decottignies - David Fitoussi
+Simon Decottignies - David Fitoussi
 
 ## Fonctionnalités:
 - Système d’évaluation des contributeurs en fonction de leurs historiques de pull requests
