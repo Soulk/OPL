@@ -18,9 +18,11 @@ function printRepos(){
             var td = document.createElement('TD');
             var a = document.createElement('A');
             td.appendChild(a);
+            getPullRequestByName(response[i].name,tr)
             if(j == 0){
                 a.appendChild(document.createTextNode(response[i].name));
                 tr.appendChild(td);
+
             } else {
 
                 //tr.appendChild(td);
@@ -28,7 +30,7 @@ function printRepos(){
         }
     }
 
-}
+};
 
 /**
  * get all the user repos from user name get in the input (searchUser)
@@ -41,7 +43,18 @@ function getReposByUser(){
     request.onload = printRepos;
     request.open('get', 'https://api.github.com/users/' + user + '/repos', true);
     request.send();
-}
+};
+
+
+function getPullRequestByName(rep,tr) {
+    var request = new XMLHttpRequest();
+
+    request.onload = function(tr) {
+        var response = JSON.parse(this.responseText);
+    };
+    request.open('get', 'https://api.github.com/repos/'+document.getElementById("searchUser").value+'/'+rep+'/pulls', true)
+    request.send()
+};
 
 /**
  * run when the enter key is pressed on the input(searchUser)
