@@ -9,10 +9,23 @@
 function printRepos(){
     var response = JSON.parse(this.responseText);
 
-    $("#repos").append("<ul id =\"reposDetails\"></ul>");
-    for(var i in response) {
-        var li = "<li>";
-        $("#reposDetails").append(li.concat(response[i].name))
+    var myTBody = document.getElementById("listRepos");
+    for (var i=0; i<response.length; i++) {
+        var tr = document.createElement('TR');
+        myTBody.appendChild(tr);
+
+        for (var j=0; j<2; j++) {
+            var td = document.createElement('TD');
+            var a = document.createElement('A');
+            td.appendChild(a);
+            if(j == 0){
+                a.appendChild(document.createTextNode(response[i].name));
+                tr.appendChild(td);
+            } else {
+
+                //tr.appendChild(td);
+            }
+        }
     }
 
 }
