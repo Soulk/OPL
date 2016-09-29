@@ -37,6 +37,7 @@ function getReposByUser(){
 document.getElementById('searchUser').onkeydown = function(e) {
     if (e.keyCode == 13) {
         getReposByUser();
+        console.log("test");
     }
 };
 

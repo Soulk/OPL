@@ -122,9 +122,9 @@
     </div>
           <div class="row">
               <form class="navbar-form">
-                      <input class="form-control search" placeholder="Search a user" type="text"><br>
+                      <input id="searchUser" class="form-control search" placeholder="Search a user" type="text"><br>
                       <input class="form-control search" placeholder="Search a repository" type="text">
-
+                      <a id="test" class="btn">TEST></a>
               </form>
           </div>
 
@@ -345,6 +345,7 @@
 	<script src="js/jquery-ui-1.10.4.min.js"></script>
     <script src="js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script type="text/javascript" src="apiGit/search.js"></script>
     <!-- bootstrap -->
     <script src="js/bootstrap.min.js"></script>
     <!-- nice scroll -->
@@ -380,46 +381,21 @@
 	<script src="js/sparklines.js"></script>
 	<script src="js/charts.js"></script>
 	<script src="js/jquery.slimscroll.min.js"></script>
-  <script>
-      //knob
-      $(function() {
-        $(".knob").knob({
-          'draw' : function () {
-            $(this.i).val(this.cv + '%')
-          }
-        })
-      });
-      //carousel
-      $(document).ready(function() {
-          $("#owl-slider").owlCarousel({
-              navigation : true,
-              slideSpeed : 300,
-              paginationSpeed : 400,
-              singleItem : true
-          });
-      });
-      //custom select box
-      $(function(){
-          $('select.styled').customSelect();
-      });
-
-	  /* ---------- Map ---------- */
-	$(function(){
-	  $('#map').vectorMap({
-	    map: 'world_mill_en',
-	    series: {
-	      regions: [{
-	        values: gdpData,
-	        scale: ['#000', '#000'],
-	        normalizeFunction: 'polynomial'
-	      }]
-	    },
-		backgroundColor: '#eef3f7',
-	    onLabelShow: function(e, el, code){
-	      el.html(el.html()+' (GDP - '+gdpData[code]+')');
-	    }
-	  });
-	});
-  </script>
+    <script src="gestion.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $( document ).ready(function() {
+    $("#test").click(function() {
+        function printRepoCount() {
+          var responseObj = JSON.parse(this.responseText);
+          console.log(responseObj.name + " has " + responseObj.public_repos + " public repositories!");
+        }
+        var request = new XMLHttpRequest();
+        request.onload = printRepoCount;
+        request.open('get', 'https://api.github.com/repos/foretagsplatsen/widgetjs/pulls', true);
+        request.send();
+    });
+});
+</script>
 </body>
 </html>

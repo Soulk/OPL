@@ -7,6 +7,7 @@ app.use(express.static('css'));
 app.use(express.static('fonts'));
 app.use(express.static('assets'));
 app.use(express.static('img'));
+app.use(express.static('js-main'));
 
 
 router.use(function (req,res,next) {
