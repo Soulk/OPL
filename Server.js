@@ -10,16 +10,16 @@ app.use(express.static('img'));
 app.use(express.static('js-main.apiGit'));
 app.use(express.static('js-main'));
 
+//ROUTES
+var rIndex = require('./routes/index');
+
+app.use('/', rIndex);
 
 router.use(function (req,res,next) {
   console.log("/" + req.method);
   next();
 });
 
-router.get("/",function(req,res){
-  //res.setHeader("Content-Type", 'text/css');
-  res.sendFile(path + "index.html");
-});
 
 router.get("/about",function(req,res){
   res.sendFile(path + "about.html");
@@ -38,3 +38,6 @@ app.use("*",function(req,res){
 app.listen(3000,function(){
   console.log("Live at Port 3000");
 });
+
+
+module.exports = app;
