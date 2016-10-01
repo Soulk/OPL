@@ -6,13 +6,12 @@
 /**
  * print the getReposByUser response
  */
-
-
-
 function printRepos(){
     var response = JSON.parse(this.responseText);
 
     var myTBody = document.getElementById("listRepos");
+    myTBody.innerHTML = "";
+
     for (var i=0; i<response.length; i++) {
         var tr = document.createElement('TR');
         myTBody.appendChild(tr);
@@ -20,6 +19,7 @@ function printRepos(){
         for (var j=0; j<2; j++) {
             var td = document.createElement('TD');
             var a = document.createElement('A');
+            a.href = "pullrequest.html";
             td.appendChild(a);
             getPullRequestByName(response[i].name,tr)
             if(j == 0){
@@ -57,7 +57,12 @@ function getPullRequestByName(rep,tr) {
     };
     request.open('get', 'https://api.github.com/repos/'+document.getElementById("searchUser").value+'/'+rep+'/pulls', true)
     request.send()
+    /*for (var j=0; j<response.length; j++) {
+        console.log(response.name);
+    }*/
 };
+
+
 
 /**
  * run when the enter key is pressed on the input(searchUser)

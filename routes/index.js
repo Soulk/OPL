@@ -46,4 +46,12 @@ router.get('/',function(req, res) {
 
 });
 
+router.get('/pullrequest.html',function(req, res) {
+    res.sendFile(path + "/pullrequest.html");
+});
+
+router.get('/user.html',function(req, res) {
+    res.sendFile(path + "/user.html");
+});
+
 module.exports = router;
