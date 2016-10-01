@@ -15,10 +15,11 @@ app.use(express.static('js-main'));
 //ROUTES
 var rLogin = require('./routes/login');
 var rIndex = require('./routes/index');
-
+var rPull = require('./routes/pullrequest');
 
 app.use('/', rLogin);
 app.use('/index.html', rIndex);
+app.use('/pullrequest.html',rPull);
 
 github = new GitHubApi({
     // optional args
@@ -55,6 +56,7 @@ router.get("/contact",function(req,res){
 
 app.use("/",router);
 app.use("/index.html",router);
+app.use("/pullrequest.html",router);
 
 app.use("*",function(req,res){
   res.sendFile(path + "404.html");

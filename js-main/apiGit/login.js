@@ -1,4 +1,4 @@
-document.getElementById('submit').submit(function() {
+document.getElementById('submit').click(function() {
 
 
 });

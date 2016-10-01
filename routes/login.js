@@ -16,20 +16,20 @@ router.get('/',function(req, res) {
 
 
 });
-router.get('/login.html/validate',function(req, res) {
-
+router.get('/login.html',function(req, ser) {
      req.app.get('github').authenticate({
         type: "basic",
         username: req.query.username,
         password: req.query.password
     });
+    app.set("user",req.query.username);
     req.app.get('github').users.get({}, function(err, res) {
-        console.log(JSON.stringify(res));
-
+        if(err) {
+            ser.redirect(path+"/login.html");
+        } else {
+            ser.redirect("/index.html");
+        }
     });
-   // res.sendFile(path + "/login.html");
-
-
 });
 
 module.exports = router;
