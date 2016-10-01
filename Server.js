@@ -1,4 +1,6 @@
 var express = require("express");
+var GitHubApi = require("github");
+var github;
 var app = express();
 var router = express.Router();
 var path = __dirname + '/views/';
@@ -11,9 +13,31 @@ app.use(express.static('js-main.apiGit'));
 app.use(express.static('js-main'));
 
 //ROUTES
+var rLogin = require('./routes/login');
 var rIndex = require('./routes/index');
 
-app.use('/', rIndex);
+
+app.use('/', rLogin);
+app.use('/index.html', rIndex);
+
+github = new GitHubApi({
+    // optional args
+    debug: true,
+    protocol: "https",
+    host: "api.github.com", // should be api.github.com for GitHub
+    pathPrefix: "", // for some GHEs; none for GitHub
+    headers: {
+        "user-agent": "My-Cool-GitHub-App" // GitHub is happy with a unique user agent
+    },
+    Promise: require('bluebird'),
+    followRedirects: false, // default: true; there's currently an issue with non-get redirects, so allow ability to disable follow-redirects
+    timeout: 5000
+});
+
+// TODO: optional authentication here depending on desired endpoints. See below in README.
+
+
+app.set("github",github);
 
 router.use(function (req,res,next) {
   console.log("/" + req.method);
@@ -30,6 +54,7 @@ router.get("/contact",function(req,res){
 });
 
 app.use("/",router);
+app.use("/index.html",router);
 
 app.use("*",function(req,res){
   res.sendFile(path + "404.html");
