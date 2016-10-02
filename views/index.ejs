@@ -178,17 +178,21 @@
                         <tr>
                             <th><i class="icon_book"></i> Repository Name</th>
                             <th><i class="icon_user"></i> Owner</th>
+                            <th><i class="icon_user"></i> Pull requests number</th>
                             <th><i class="icon_book"></i> Last update</th>
                             <th><i class="icon_book"></i> Website</th>
                         </tr>
 
                         <% res.forEach(function(ser) { %>
+                        <% if(ser.id.nbpulls>0) {%>
                         <tr>
                             <td><a href="pullrequest.html?owner=<%= ser.owner.login %>&repo=<%= ser.name %>"><%= ser.name %></a></td>
-                            <td><img src="<%= ser.owner.avatar_url %>" height="30" width="30"><%= ser.owner.login %></td>
+                            <td><img src="<%= ser.owner.avatar_url %>" height="30" width="30"><a href="<%= ser.owner.html_url %>"><%= ser.owner.login %></a></td>
+                            <td><%= ser.id.nbpulls %></td>
                             <td><%= ser.updated_at %></td>
-                            <td><a href="<%= ser.html_url %>"><i class="icon_globe-2"></a></i><td>
+                            <td><a href="<%= ser.html_url %>"><i class="icon_globe-2"></i></a><td>
                         </tr>
+                        <% }%>
                         <% }); %>
 
                         </tbody>
