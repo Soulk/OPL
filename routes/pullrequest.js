@@ -10,10 +10,10 @@ router.get('/',function(req, ser) {
      console.log(req.query.owner);
      console.log(req.query.repo);
      ser.app.get('github').pullRequests.getAll({
-         user: req.query.owner,
-         repo: req.query.repo,
-        //user: "foretagsplatsen",
-        //repo: "numbro",
+        // user: req.query.owner,
+         // repo: req.query.repo,
+        user: "mozilla-mobile",
+        repo: "firefox-ios",
         state: "all",
         per_page: 100
      }, function(err, res) {

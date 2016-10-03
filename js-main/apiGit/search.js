@@ -69,10 +69,32 @@ function getPullRequestByName(rep,tr) {
  * run when the enter key is pressed on the input(searchUser)
  * @param e
  */
-document.getElementById('searchUser').onkeydown = function(e) {
+/*document.getElementById('searchUser').onkeydown = function(e) {
     if (e.keyCode == 13) {
         getReposByUser();
-        console.log("test");
     }
-};
+};*/
+
+/**
+ * filter of all the column of pull request list in pullRequest.html
+ */
+function pullFilter(){
+    var val = document.getElementById('searchPull').value.toString();
+    $.each($("#table tr:not(:first)"), function() {
+            var tmp = $(this).find("td");
+
+            var bool = false;
+            for (var j=0; j<tmp.length; j++) {
+                console.log(tmp[j].innerText);
+                if(tmp[j].innerText.indexOf(val) !== -1){
+                   bool = true;
+                }
+            }
+            if(bool)
+                $(this).show();
+            else
+                $(this).hide();
+    });
+}
+
 
