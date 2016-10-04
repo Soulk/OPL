@@ -79,14 +79,14 @@ function getPullRequestByName(rep,tr) {
  * filter of all the column of pull request list in pullRequest.html
  */
 function pullFilter(){
-    var val = document.getElementById('searchPull').value.toString();
+    var val = document.getElementById('searchPull').value.toLowerCase();
     $.each($("#table tr:not(:first)"), function() {
             var tmp = $(this).find("td");
 
             var bool = false;
             for (var j=0; j<tmp.length; j++) {
                 console.log(tmp[j].innerText);
-                if(tmp[j].innerText.indexOf(val) !== -1){
+                if(tmp[j].innerText.toLowerCase().indexOf(val) !== -1){
                    bool = true;
                 }
             }
@@ -97,4 +97,25 @@ function pullFilter(){
     });
 }
 
+/**
+ * filter of all the column of repos list in index.html
+ */
+function pullRepos(){
+    console.log("lol");
+    var val = document.getElementById('searchRepos').value.toLowerCase();
+    $.each($("#repostable tr:not(:first)"), function() {
+        var tmp = $(this).find("td");
 
+        var bool = false;
+        for (var j=0; j<tmp.length; j++) {
+            console.log(tmp[j].innerText);
+            if(tmp[j].innerText.toLowerCase().indexOf(val) !== -1){
+                bool = true;
+            }
+        }
+        if(bool)
+            $(this).show();
+        else
+            $(this).hide();
+    });
+}
