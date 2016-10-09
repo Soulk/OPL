@@ -101,7 +101,6 @@ function pullFilter(){
  * filter of all the column of repos list in index.html
  */
 function pullRepos(){
-    console.log("lol");
     var val = document.getElementById('searchRepos').value.toLowerCase();
     $.each($("#repostable tr:not(:first)"), function() {
         var tmp = $(this).find("td");

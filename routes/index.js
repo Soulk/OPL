@@ -11,7 +11,7 @@ router.get('/',function(req, ser) {
             sort : "updated"
         }, function(err, response) {
             console.log("\n\nazeakejkaze kAJHJAZHJHJHJZRH JZRJKHZJR HHRJHZ JKZHRJKHZRJHZKRHZJRKZRHJHZR JZRKHZRJR");
-            //console.log(response);
+            console.log(response);
            //console.log(response.length);
            var lock = 0;
            var arrayPull = [];
