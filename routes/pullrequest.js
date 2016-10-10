@@ -17,7 +17,7 @@ router.get('/',function(req, ser) {
      ser.app.get('github').pullRequests.getAll({
          //user: req.query.owner,
           //repo: req.query.repo,
-        user: "guryanovev",
+        owner: "guryanovev",
         repo: "CrystalQuartz",
         state: "all",
         per_page: 100
@@ -47,7 +47,7 @@ router.get('/',function(req, ser) {
                     ser.app.get('github').repos.getStatsContributors({
                              //user: req.query.owner,
                               //repo: req.query.repo,
-                            user: "guryanovev",
+                            owner: "guryanovev",
                             //repo: req.query.repo,
                             repo: "CrystalQuartz",
                             per_page: 100

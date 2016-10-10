@@ -11,31 +11,32 @@ router.get('/',function(req, ser) {
             sort : "updated"
         }, function(err, response) {
             console.log("\n\nazeakejkaze kAJHJAZHJHJHJZRH JZRJKHZJR HHRJHZ JKZHRJKHZRJHZKRHZJRKZRHJHZR JZRKHZRJR");
-            console.log(response);
+            //console.log(response);
            //console.log(response.length);
            var lock = 0;
            var arrayPull = [];
             for(var i = 0 ;i< response.length; i++) {
                 var tmp = lock;
+                //console.log(response[i].owner.login +" OWNER " + response[i].name);
                 ser.app.get('github').pullRequests.getAll({
-                    user: response[i].owner.login,
+                    owner: response[i].owner.login,
                     repo: response[i].name,
                     state: "open",
                     per_page: 100
                  }, function(err, res) {
                     lock++;
-                    console.log(res+" " + i);
+                    //console.log(res+" " + i);
                     //c onsole.log(response[tmp]);
                     arrayPull.push(res);
                     if(lock == response.length) {
                     //console.log(arrayPull);
                     for(var j=0 ; j<response.length;j++) {
                         for(var k =0;k<arrayPull.length;k++) {
-                            //console.log(arrayPull[k][0]);
+                           // console.log(arrayPull[k]);
                             if(arrayPull[k][0] != undefined) {
-                                 console.log(arrayPull[k][0].html_url +" " + response[j].html_url );
+                               //  console.log(arrayPull[k][0].html_url +" " + response[j].html_url );
                                 if( arrayPull[k][0].html_url.indexOf(response[j].html_url) != -1) {
-                                    console.log(arrayPull[k].length);
+                                 //   console.log(arrayPull[k].length);
                                     response[j].id = {id: response[j].id , nbpulls: arrayPull[k].length};
                                     k = arrayPull.length+1;
                                     break;
