@@ -15,11 +15,12 @@ router.get('/',function(req, ser) {
      console.log(req.query.owner);
      console.log(req.query.repo);
      ser.app.get('github').pullRequests.getAll({
-         //user: req.query.owner,
-          //repo: req.query.repo,
-         user: "mozilla-mobile",
-        owner: "mozilla-mobile",
-        repo: "firefox-ios",
+         user: req.query.owner,
+         owner :req.query.owner,
+          repo: req.query.repo,
+        // user: "mozilla-mobile",
+        //owner: "mozilla-mobile",
+        //repo: "firefox-ios",
         state: "all",
         per_page: 100
      }, renderTab);
@@ -43,15 +44,17 @@ router.get('/',function(req, ser) {
 
                     var pullRequests = [];
                     createRenderedPullRequests(tabPullRequests, arrayUser, pullRequests);
-                    console.log(arrayUser);
+                    console.log(req.query.owner);
+                  console.log(req.query.repo);
 
                     ser.app.get('github').repos.getStatsContributors({
-                             //user: req.query.owner,
-                              //repo: req.query.repo,
-                            user: "mozilla-mobile",
-                            owner: "mozilla-mobile",
+                             user: req.query.owner,
+                             repo: req.query.repo,
+                             owner: req.query.owner,
+                            //user: "mozilla-mobile",
+                            //owner: "mozilla-mobile",
                             //repo: req.query.repo,
-                            repo: "firefox-ios",
+                            //repo: "firefox-ios",
                             per_page: 100
                          }, statsPulls);
 
