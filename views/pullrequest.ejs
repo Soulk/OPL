@@ -148,7 +148,7 @@
                                 <td><a href="<%= ser.html_url %>"><%= ser.title %></a></td>
                                 <td><a href="<%= ser.user.html_url %>"><%= ser.user.login.name %> - (<%= ser.user.login.ratio %>%)</a></td>
                                 <td><%= ser.user.login.total %></td>
-                                <td><%= ser.updated_at %></td>
+                                <td><%= ser.updated_at.substring(0,10) %></td>
                                <% if(ser.user.login.score> 70) { %><td class="alert alert-success"><%= ser.user.login.score %></td><% } else if(ser.user.login.score > 50) { %><td class="alert alert-info"><%= ser.user.login.score %></td><% }else if(ser.user.login.score > 20) { %><td class="alert alert-warning"><%= ser.user.login.score %></td><% } else {%><td class="alert alert-danger"><%= ser.user.login.score %></td><% }%>
                              </tr>
                              <% }); %>
