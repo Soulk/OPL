@@ -19,6 +19,7 @@ router.get('/',function(req, ser) {
                 var tmp = lock;
                 //console.log(response[i].owner.login +" OWNER " + response[i].name);
                 ser.app.get('github').pullRequests.getAll({
+                    user:response[i].owner.login,
                     owner: response[i].owner.login,
                     repo: response[i].name,
                     state: "open",
