@@ -120,12 +120,6 @@
                     </ol>
                 </div>
             </div>
-            <div class="row">
-                <form class="navbar-form">
-                    <input id="searchPull" onkeyup="pullFilter()" class="form-control" placeholder="Search a pull request" type="text"><br>
-                </form>
-            </div>
-            </br>
 
             <div class="row">
                 <div class="col-lg-12">
@@ -149,7 +143,7 @@
                                 <td><a href="<%= ser.user.html_url %>"><%= ser.user.login.name %> - (<%= ser.user.login.ratio %>%)</a></td>
                                 <td><%= ser.user.login.total %></td>
                                 <td><%= ser.updated_at.substring(0,10) %></td>
-                               <% if(ser.user.login.score> 70) { %><td class="alert alert-success"><%= ser.user.login.score %></td><% } else if(ser.user.login.score > 50) { %><td class="alert alert-info"><%= ser.user.login.score %></td><% }else if(ser.user.login.score > 20) { %><td class="alert alert-warning"><%= ser.user.login.score %></td><% } else {%><td class="alert alert-danger"><%= ser.user.login.score %></td><% }%>
+                               <% if(ser.score> 70) { %><td class="alert alert-success"><%= ser.score %></td><% } else if(ser.user.login.score > 50) { %><td class="alert alert-info"><%= ser.score %></td><% }else if(ser.score > 20) { %><td class="alert alert-warning"><%= ser.score %></td><% } else {%><td class="alert alert-danger"><%= ser.score %></td><% }%>
                              </tr>
                              <% }); %>
                             </tbody>

@@ -17,9 +17,9 @@ router.get('/',function(req, ser) {
      ser.app.get('github').pullRequests.getAll({
          //user: req.query.owner,
           //repo: req.query.repo,
-         user: "guryanovev",
-        owner: "guryanovev",
-        repo: "CrystalQuartz",
+         user: "mozilla-mobile",
+        owner: "mozilla-mobile",
+        repo: "firefox-ios",
         state: "all",
         per_page: 100
      }, renderTab);
@@ -48,10 +48,10 @@ router.get('/',function(req, ser) {
                     ser.app.get('github').repos.getStatsContributors({
                              //user: req.query.owner,
                               //repo: req.query.repo,
-                            user: "guryanovev",
-                            owner: "guryanovev",
+                            user: "mozilla-mobile",
+                            owner: "mozilla-mobile",
                             //repo: req.query.repo,
-                            repo: "CrystalQuartz",
+                            repo: "firefox-ios",
                             per_page: 100
                          }, statsPulls);
 
@@ -101,15 +101,16 @@ router.get('/',function(req, ser) {
                                     } else if(pullRequests[i].user.login.total>maxPullsRequestsDone) {
                                         maxPullsRequestsDone = pullRequests[i].user.login.total;
                                     }
-                                    if( (new Date(pullRequests[i].updated_at.substring(0,10)).getTime() > new Date(oldestUpdate).getTime())) {
+                                    if( (new Date(pullRequests[i].updated_at.substring(0,10)).getTime() < new Date(oldestUpdate).getTime())) {
                                         oldestUpdate = new Date(pullRequests[i].updated_at.substring(0,10)).getTime();
                                     }
                                 }
                                 console.log(maxTotalAddDel +" " + maxRatio +" " + maxPullsRequestsDone + " " + oldestUpdate);
                                 for(var i=0;i<pullRequests.length;i++) {
-                                    pullRequests[i].user.login.score = Math.round((maxTotalAddDel == 0 ? 0 :((pullRequests[i].user.login.totalAddDel == undefined || pullRequests[i].user.login.totalAddDel<0 ? 0 : pullRequests[i].user.login.totalAddDel )/maxTotalAddDel)*30) + (maxRatio == 0 ? 0 : ((pullRequests[i].user.login.ratio =="new"? 0 : pullRequests[i].user.login.ratio) /maxRatio)*40) + (maxPullsRequestsDone == 0 ? 0 : ((pullRequests[i].user.login.total =="new"? 0 : pullRequests[i].user.login.total)/maxPullsRequestsDone)*10) + (new Date(pullRequests[i].updated_at.substring(0,10)).getTime()/oldestUpdate)*20)
-                                    console.log(pullRequests[i].user.login.totalAddDel +" alo "+ pullRequests[i].user.login.ratio +" alo " + pullRequests[i].user.login.total  + " alo " + (new Date(pullRequests[i].updated_at.substring(0,10)).getTime()));
+
+                                    pullRequests[i].score = ((maxTotalAddDel == 0 ? 0 :((pullRequests[i].user.login.totalAddDel == undefined || pullRequests[i].user.login.totalAddDel<0 ? 0 : pullRequests[i].user.login.totalAddDel )/maxTotalAddDel)*30) + (maxRatio == 0 ? 0 : ((pullRequests[i].user.login.ratio =="new"? 0 : pullRequests[i].user.login.ratio) /maxRatio)*40) + (maxPullsRequestsDone == 0 ? 0 : ((pullRequests[i].user.login.total =="new"? 0 : pullRequests[i].user.login.total)/maxPullsRequestsDone)*10) + (oldestUpdate/new Date(pullRequests[i].updated_at.substring(0,10)).getTime())*20).toFixed(2);
                                 }
+
                            };
                            generateScore(pullRequests);
                            //console.log(arrayUser);
