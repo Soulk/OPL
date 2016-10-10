@@ -10,3 +10,15 @@ Simon Decottignies - David Fitoussi
 ## But :
 - Motivent les contributeurs à prendre soins de leurs pull request
 - Facilite le travail de l’intégrateur
+
+## Installation de l'environnement :
+- Installer NodeJS (https://nodejs.org/en/download/)
+- Installer ExpressJS (https://expressjs.com/en/starter/installing.html)
+
+```sh
+$ npm install 
+$ npm start
+$ node server.js
+```
+
+- allez sur : localhost:3001
